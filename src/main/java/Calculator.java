@@ -1,6 +1,6 @@
 public class Calculator {
 
-```
+
 public int add(int a, int b) {
     return a + b;
 }
@@ -28,6 +28,6 @@ public static void main(String[] args) {
     System.out.println("Multiplication: " + calculator.multiply(10, 5));
     System.out.println("Division: " + calculator.divide(10, 5));
 }
-```
+
 
 }
