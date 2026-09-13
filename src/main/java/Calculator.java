@@ -21,7 +21,7 @@ public static void main(String[] args) {
 
     Calculator calculator = new Calculator();
 
-   System.out.println("Java Calculator CI/CD Application Started");
+   System.out.println("Java Calculator CI/CD Application Started - Poll SCM Test");
 
     System.out.println("Addition: " + calculator.add(10, 5));
     System.out.println("Subtraction: " + calculator.subtract(10, 5));
