@@ -1,43 +1,46 @@
 pipeline {
-agent any
+    agent any
 
-
-tools {
-    maven 'Maven-3.9.16'
-}
-
-stages {
-
-    stage('Checkout') {
-        steps {
-            checkout scm
-        }
+    tools {
+        maven 'Maven-3.9.16'
     }
 
-    stage('Build') {
-        steps {
-            bat 'mvn clean compile'
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'mvn package -DskipTests'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t java-calculator .'
+            }
+        }
+
+        stage('Docker Deploy') {
+            steps {
+                bat 'docker run --rm java-calculator'
+            }
         }
     }
-
-    stage('Test') {
-        steps {
-            bat 'mvn test'
-        }
-    }
-
-    stage('Package') {
-        steps {
-            bat 'mvn package -DskipTests'
-        }
-    }
-
-    stage('Deploy') {
-        steps {
-            bat 'java -jar target\\java-calculator-1.0-SNAPSHOT.jar'
-        }
-    }
-}
-
-
 }
